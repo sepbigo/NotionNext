@@ -1,9 +1,11 @@
 import AlgoliaSearchModal from '@/components/AlgoliaSearchModal'
 import Comment from '@/components/Comment'
+import { AdSlot } from '@/components/GoogleAdsense'
 import LoadingCover from '@/components/LoadingCover'
 import replaceSearchResult from '@/components/Mark'
 import NotionPage from '@/components/NotionPage'
 import ShareBar from '@/components/ShareBar'
+import WWAds from '@/components/WWAds'
 import { siteConfig } from '@/lib/config'
 import { useGlobal } from '@/lib/global'
 import { isBrowser } from '@/lib/utils'
@@ -173,6 +175,9 @@ const LayoutSlug = props => {
   return (
     <>
       <div {...props} className='w-full mx-auto max-w-screen-3xl'>
+        {/* 广告位 */}
+        <WWAds orientation='horizontal' />
+
         {/* 文章锁 */}
         {lock && <ArticleLock validPassword={validPassword} />}
 
@@ -205,6 +210,7 @@ const LayoutSlug = props => {
                   <ShareBar post={post} />
                   {/* 上一篇下一篇 */}
                   <PostNavAround prev={prev} next={next} />
+
                   {/* 评论区 */}
                   <Comment frontMatter={post} />
                 </section>
@@ -234,6 +240,11 @@ const LayoutSlug = props => {
                   <PostGroupLatest {...props} vertical={true} />
                 </div>
 
+                {/* Adsense */}
+                <div>
+                  <AdSlot />
+                </div>
+
                 {/* 文章分类区块 */}
                 <div>
                   <CategoryGroup {...props} />
@@ -241,6 +252,10 @@ const LayoutSlug = props => {
 
                 <div>
                   <TouchMeCard />
+                </div>
+
+                <div>
+                  <WWAds />
                 </div>
 
                 {/* 底部留白 */}
